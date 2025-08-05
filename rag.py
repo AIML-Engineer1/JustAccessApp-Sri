@@ -64,10 +64,25 @@ index = pc.Index(host=os.environ["INDEX_HOST"])
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 
-def get_openai_embeddings(text: str) -> list[float]:
-    response = client.embeddings.create(input=f"{text}", model=TEXT_MODEL)
+def get_openai_embeddings(text: str):
 
-    return response.data[0].embedding
+    try:
+
+        response = client.embeddings.create(
+
+            input=text,
+
+            model=TEXT_MODEL
+
+        )
+
+        return response.data[0].embedding
+
+    except Exception as e:
+
+        st.error(f"OpenAI Embedding API error: {e}")
+
+        raise
 
 
 # function query similar chunks
