@@ -168,13 +168,6 @@ def get_model():
     model = ChatOpenAI(model=QA_MODEL, api_key=os.environ["OPENAI_API_KEY"])
     return model
 
-
-Chaya Ravindra
-	
-5:45 PM (0 minutes ago)
-	
-to me
-
 def translator(context: str, lang: str):
     # lang: 'en' → translate to English, 'sp' → to Spanish, 'hi' → to Hindi, 'vi' → to Vietnamese, 'zh' → to Mandarin
     if lang == "en":
