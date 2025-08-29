@@ -16,7 +16,7 @@ os.environ["PINECONE_API_KEY"] = st.secrets["llm"]["PINECONE_API_KEY"]
 os.environ["INDEX_HOST"] = st.secrets["llm"]["INDEX_HOST"]
 
 # constants
-NAMESPACE_KEY = "sri"
+NAMESPACE_KEY = "str"
 TEXT_MODEL = "text-embedding-ada-002"
 QA_MODEL = "gpt-4o-mini"
 COMMON_ENGLISH_TEMPLATE = """
@@ -228,8 +228,8 @@ def get_similar_context(question: str, lang: str):
     # query the similar chunks
     similar_chunks = query_response(quer_embed_data)
     # extract the similar text data
-    similar_content = content_extractor(similar_chunks)
-    return similar_content, question
+    similar_content, source = content_extractor(similar_chunks)
+    return similar_content, question, source
 
 def streaming_question_answering(query_question: str, context_text: str, lang: str, template: str = COMMON_ENGLISH_TEMPLATE):
     prompt = ChatPromptTemplate.from_template(template)
