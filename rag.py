@@ -16,7 +16,7 @@ os.environ["PINECONE_API_KEY"] = st.secrets["llm"]["PINECONE_API_KEY"]
 os.environ["INDEX_HOST"] = st.secrets["llm"]["INDEX_HOST"]
 
 # constants
-NAMESPACE_KEY = "sri"
+NAMESPACE_KEY = "str"
 TEXT_MODEL = "text-embedding-ada-002"
 QA_MODEL = "gpt-4o-mini"
 COMMON_ENGLISH_TEMPLATE = """
@@ -161,8 +161,8 @@ def content_extractor(similar_data):
     top_values = similar_data["matches"]
     # get the text out
     text_content = [sub_content["metadata"]["text"] for sub_content in top_values]
-    return " ".join(text_content)
-
+    sources = [match['metadata'].get('source', 'Source not found') for match in top_values]
+    return " ".join(text_content), sources[0] if sources else "Source not found"
 
 def get_model():
     model = ChatOpenAI(model=QA_MODEL, api_key=os.environ["OPENAI_API_KEY"])
