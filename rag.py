@@ -19,6 +19,11 @@ os.environ["INDEX_HOST"] = st.secrets["llm"]["INDEX_HOST"]
 NAMESPACE_KEY = "sri"
 TEXT_MODEL = "text-embedding-ada-002"
 QA_MODEL = "gpt-4o-mini"
+LEGAL_AID_TEMPLATE = """
+You are a helpful legal aid assistant. Based on the state provided, generate a list of 3-5 relevant legal aid resource links.
+State: {state}
+Helpful answer:   
+"""
 COMMON_ENGLISH_TEMPLATE = """
 "You are a highly trained Legal Aid Navigator."
 "Use the following pieces of context to answer the question at the end with human readable answer as a paragraph"
@@ -273,3 +278,21 @@ def streaming_question_answering(query_question: str, context_text: str, lang: s
         # Default fallback to English if unsupported language
         chain = prompt | model | output_parser
         return chain.stream({"context": context_text, "question": query_question})
+        
+def translate_list(items: list[str], lang: str) -> list[str]:
+    if lang == "en":
+        return items
+    translated_items = [translator(item, lang) for item in items]
+    return translated_items
+    
+def get_legal_aid_resources(state: str, lang: str):
+    prompt = ChatPromptTemplate.from_template(LEGAL_AID_TEMPLATE)
+    model = get_model()
+    output_parser = StrOutputParser()
+    # create the chain
+    chain = prompt | model | output_parser
+    # get the answer
+    resources = chain.invoke({"state": state})
+    if lang != "en":
+        return translator(resources, lang)
+    return resources
