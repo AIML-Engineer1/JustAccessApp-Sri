@@ -1,6 +1,6 @@
 import streamlit as st
 from translator_config import SENTENCE
-from rag import get_legal_aid_resources, translate_list
+from rag import get_legal_aid_resources,translate_list
 
 if 'lang' not in st.session_state:
     st.session_state.lang = "en"
