@@ -70,11 +70,24 @@ SENTENCE = {
         "zh": "正义通道聊天机器人 "
     },
 "sent11": {
-
         "en": "Disclaimer: This is a bot generated message and should not be considered professional advice.",
         "sp": "Descargo de responsabilidad: este es un mensaje generado por un bot y no debe considerarse asesoramiento profesional.",
         "hi": "अस्वीकरण: यह एक बॉट द्वारा उत्पन्न संदेश है और इसे पेशेवर सलाह नहीं माना जाना चाहिए।",
         "vi": "Tuyên bố miễn trừ trách nhiệm: Đây là tin nhắn do bot tạo ra và không được coi là lời khuyên chuyên nghiệp.",
         "zh": "免責聲明：這是機器人產生的訊息，不應被視為專業建議。"
-    }      
+    },
+"sent12": {
+        "en": "Legal Aid Resources by State",
+        "sp": "Recursos de Asistencia Legal por Estado",
+        "hi": "राज्य द्वारा कानूनी सहायता संसाधन",
+        "vi": "Tài nguyên Trợ giúp Pháp lý theo Tiểu bang",
+        "zh": "各州法律援助资源"
+    },
+"sent13": {
+        "en": "Select a State",
+        "sp": "Seleccione un Estado",
+        "hi": "एक राज्य चुनें",
+        "vi": "Chọn một tiểu bang",
+        "zh": "选择一个州"
+    }
 }
